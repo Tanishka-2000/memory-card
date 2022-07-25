@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Card from './Card';
 import data from '../card-data';
 export default function CardContainer(props){
@@ -11,13 +11,18 @@ export default function CardContainer(props){
         else {
             setTappedImg([...tappedImg, n]);
             props.increaseScore();
-            dataList = shuffle(dataList);
+            // dataList = shuffle(dataList);
         }
     }
     const handleClick = (e) => {
         let temp = e.target.getAttribute('data-key') || null;
         if(temp) tapped(temp);
     }
+    useEffect(() => {
+        dataList = dataList.sort( () => Math.random() - 0.5 );
+        if(props.setReset) setTappedImg([]);
+    });
+
     return(
         <div className='card-container' onClick={handleClick}>
             {dataList.map(obj => <Card key={obj.id} info={obj}/>)}
@@ -25,7 +30,7 @@ export default function CardContainer(props){
         );
 }
 
-function shuffle(cardData){
-    const newData = cardData.sort( () => Math.random() - 0.5 );
-    return newData;
-}
+// function shuffle(cardData){
+//
+//     return newData;
+// }
