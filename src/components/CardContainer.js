@@ -2,6 +2,7 @@ import {useState} from 'react';
 import Card from './Card';
 import data from '../card-data';
 export default function CardContainer(props){
+    let dataList = data;
     const [tappedImg, setTappedImg] = useState([]);
 
     const tapped = (n) => {
@@ -10,6 +11,7 @@ export default function CardContainer(props){
         else {
             setTappedImg([...tappedImg, n]);
             props.increaseScore();
+            dataList = shuffle(dataList);
         }
     }
     const handleClick = (e) => {
@@ -18,13 +20,12 @@ export default function CardContainer(props){
     }
     return(
         <div className='card-container' onClick={handleClick}>
-            {data.map(obj => <Card key={obj.id} info={obj}/>)}
+            {dataList.map(obj => <Card key={obj.id} info={obj}/>)}
         </div>
         );
 }
-//
-// function checkForGameOver(list, num){
-//     if(list.includes(num)) return true;
-//     if(list.length === 11) return true;
-//     return false;
-// }
+
+function shuffle(cardData){
+    const newData = cardData.sort( () => Math.random() - 0.5 );
+    return newData;
+}

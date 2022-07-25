@@ -11,22 +11,21 @@ function App() {
 
     const increaseScore = () => {
         if((score + 1) > highScore) setHighScore(hs => hs + 1);
-        if((score + 1) === 12) setIsGameWon(true);
+        if((score + 1) === 12) gameWon();
         setScore(sc => sc + 1);
     }
     const gameOver = () => {
         setIsGameOver(true);
     }
-    // const gameWon = () => {
-    //     setIsGameWon(true);
-    //     increaseScore();
-    // }
+    const gameWon = () => {
+        setIsGameWon(true);
+        setIsGameOver(true);
+    }
   return (
     <div>
     <MessageDiv score={score} highScore = {highScore} isgameOver={isgameOver} isGameWon={isGameWon}/>
     <CardContainer increaseScore={increaseScore} gameOver={gameOver} />
     </div>
-    // <Card name={data[0]}/>
   );
 }
 
