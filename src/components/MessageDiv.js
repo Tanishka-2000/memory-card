@@ -1,12 +1,12 @@
-export default function MessageDiv(){
+export default function MessageDiv(props){
     return(
         <div className='message-div'>
             <div className="msg">
-                <p>To win this game you have to tap all cards. Don't tap same card twice.</p>
+                <p>{props.isgameOver ? (props.isGameWon ? 'You Won': 'You Lose'):'To win this game you have to tap all cards. Don\'t tap same card twice.'}</p>
             </div>
             <div className="score">
-                <p>Score: 0</p>
-                <p>High Score: 0</p>
+                <p>Score: {props.score}</p>
+                <p>High Score: {props.highScore}</p>
             </div>
         </div>
  );

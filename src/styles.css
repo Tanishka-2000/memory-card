@@ -21,6 +21,16 @@
 .card-container>div{
     border: 1px solid #555;
 }
+.card{
+    position: relative;
+}
 .card>img{
     width: 100%;
+}
+.cover{
+    width: 407px;
+    height: 450px;
+    position: absolute;
+    top: 0;
+    left:0;
 }
